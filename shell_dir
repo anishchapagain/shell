@@ -1,0 +1,5 @@
+DIR="foo"
+[ -d "$DIR" ] && echo "Found"
+
+[ -d "/path/dir/" ] && echo "Directory /path/dir/ exists."
+[ ! -d "/dir1/" ] && echo "Directory /dir1/ DOES NOT exists."
