@@ -1,0 +1,14 @@
+# c-create, z-compress gzip, v-verbose, f-file
+tar -czvf tarName.tar.gz /path/to/directory
+
+# remove folder CDP after creating CDP.tar.gz
+tar -czvf --remove-files CDP.tar.gz /CDP 
+
+#unzip
+for filename in *.tar.gz
+do
+  tar -zxf $filename
+done
+
+#unzip and remove tar file
+tar -xzf test.tar.gz && rm test.tar.gz
