@@ -1,0 +1,67 @@
+db.users.update ({_id: '123'}, { '$set': {"friends.0.emails.0.email" : '2222'} });
+db.users.update ({_id: '123'}, { '$set': {"friends.0.emails.1.email" : '2222'} })
+db.collection.update({
+    "field1":"value1" ,
+    "field3.list.content":"valueB",
+    {"$set":{"field3.list.$.start" : "Updated_Value"}}
+)
+
+db.employee.replaceOne(
+    {
+        "employee_id": 794875
+    },
+    {
+        "employee_id": 794875,
+        "employee_name": "David Smith",
+        "job": "Sales Manager",
+        "department_id": 3,
+        "salary": 30000,
+        "hire_date": NumberLong("1643969311817")
+    }
+)
+
+db.employee.updateOne(
+    {
+        "employee_id": 794875,
+        "employee_name": "David Smith"
+    },
+    {
+        $set:{
+            department_id:3,
+            job:"Sales Manager"
+        }
+    }
+)
+
+
+db.employee.updateOne(
+    {
+        "employee_id": 794875
+    },
+    {
+        $inc: {
+            department_id: 1
+        },
+        $set: {
+            job: "Sales Manager"
+        }
+    }
+)
+
+
+db.employee.update(
+    {
+        "job": "Sales Representative"
+    },
+    {
+        $inc: { 
+            salary: 10000
+        }, 
+        $set: { 
+            department_id: 5
+        }
+    },
+    {
+        multi: true 
+    }
+)
