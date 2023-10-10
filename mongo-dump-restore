@@ -16,7 +16,6 @@ def dump(collections, conn, db_name, path):
     >>> collections = ['collection_name', 'collection_name1', 'collection_name2']
     >>> dump(collections, conn, db_name, DB_BACKUP_DIR)
     """
-
     db = conn[db_name]
     for coll in collections:
         with open(os.path.join(path, f'{coll}.bson'), 'wb+') as f:
@@ -27,7 +26,6 @@ def dump(collections, conn, db_name, path):
 def restore(path, conn, db_name):
     """
     MongoDB Restore
-
     :param path: Database dumped path
     :param conn: MongoDB client connection
     :param db_name: Database name
