@@ -1,0 +1,12 @@
+# https://github.com/fvergaracl/simpleMongoDB-Backup/blob/master/run.py
+
+import os
+import tarfile
+
+def tardirectory(path,name):
+   with tarfile.open(name, "w:gz") as tarhandle:
+      for root, dirs, files in os.walk(path):
+         for f in files:
+            tarhandle.add(os.path.join(root, f))
+tardirectory('C:\Users\Lenovo\Downloads\Work TP','pos.tar.gz')
+tarfile.close()
