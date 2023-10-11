@@ -1,6 +1,7 @@
 DIR="foo"
 [ -d "$DIR" ] && echo "Found"
 
+
 [ -d "/path/dir/" ] && echo "Directory /path/dir/ exists."
 [ ! -d "/dir1/" ] && echo "Directory /dir1/ DOES NOT exists."
 
@@ -9,8 +10,10 @@ d="$1"
 [ "$d" == "" ] && { echo "Usage: $0 directory"; exit 1; }
 [ -d "${d}" ] &&  echo "Directory $d found." || echo "Directory $d not found."
 
+
 chmod +x ./script.sh # $ chmod 755 first.sh
 ./script.sh
+
 
 INPUT_STRING=hello
 while [ "$INPUT_STRING" != "bye" ]
