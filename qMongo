@@ -115,6 +115,8 @@ db.collection.aggregate([
   }
 ])
 
+db.device.distinct("dept")
+
 
 db.collection.aggregate([
   {
