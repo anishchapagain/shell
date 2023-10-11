@@ -116,7 +116,9 @@ db.collection.aggregate([
 ])
 
 db.device.distinct("dept")
+db.inventory.distinct( "item.sku", { dept: "A" } )
 
+db.mycollection.aggregate([{$project: { count: { $size:"$foo" }}}])
 
 db.collection.aggregate([
   {
