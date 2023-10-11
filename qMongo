@@ -93,6 +93,15 @@ db.collection.aggregate([
   }
 ])
 
+agg_result= mycollection.aggregate( 
+    [{ 
+    "$group" :  
+        {"_id" : "$user",  
+         "num_tutorial" : {"$sum" : 1} 
+         }} 
+    ]) 
+
+
 db.collection.aggregate([
   {
     $group: {
