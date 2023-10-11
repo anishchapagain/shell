@@ -83,6 +83,15 @@ db.posts.updateOne(
   { upsert: true } 
 )
 
+db.collection.aggregate([
+  {
+    $group: {
+      _id: {
+        name: "$name"
+      }
+    }
+  }
+])
 
 db.collection.aggregate([
   {
