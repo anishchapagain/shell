@@ -114,8 +114,19 @@ db.collection.aggregate([
     "$count": "type"
   }
 ])
+db.student3.aggregate({$unwind: "$groups"}).pretty()
 
-
+db.student.aggregate( [
+   {
+      $group: {
+         _id: "$name",
+         countNumberOfDocuments: {
+            $count: {}
+         }
+      }
+   }
+] )
+)
 db.device.distinct("dept")
 db.inventory.distinct( "item.sku", { dept: "A" } )
 db.mycollection.aggregate([{$project: { count: { $size:"$foo" }}}])
