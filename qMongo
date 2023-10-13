@@ -6,6 +6,13 @@ db.collection.update({
     {"$set":{"field3.list.$.start" : "Updated_Value"}}
 )
 
+db.devices.aggregate([
+{$unwind: "$ip"},
+{
+$group: {_id: "$ip", count: {$sum: NumberInt(1)}}
+}
+])
+
 db.employee.replaceOne(
     {
         "employee_id": 794875
