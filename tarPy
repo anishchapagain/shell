@@ -8,5 +8,7 @@ def tardirectory(path,name):
       for root, dirs, files in os.walk(path):
          for f in files:
             tarhandle.add(os.path.join(root, f))
+
 tardirectory('C:\Users\Lenovo\Downloads\Work TP','pos.tar.gz')
+
 tarfile.close()
