@@ -35,7 +35,6 @@ def restore(path, conn, db_name):
     >>> conn = MongoClient("mongodb://admin:admin@127.0.0.1:27017", authSource="admin")
     >>> db_name = 'my_db'
     >>> restore(DB_BACKUP_DIR, conn, db_name)
-    
     """
     
     db = conn[db_name]
