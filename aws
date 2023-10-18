@@ -1,0 +1,196 @@
+https://es0-alias.orch-117.eu.svc-sbx.logpoint.cloud/#/Dashboard/showDashboard//#tab/test
+https://eu-west-1.console.aws.amazon.com/systems-manager/session-manager/i-03ded29383644c019?region=eu-west-1#
+https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#InstanceDetails:instanceId=i-03ded29383644c019
+
+This session is encrypted using AWS KMS.
+$ sudo su
+root@logpoint:/usr/bin# cd /tmp
+root@logpoint:/tmp# ls -l
+total 864
+drwxr-xr-x 2 loginspect loginspect   4096 Oct 16 08:26 analyzer
+drwx------ 3 root       root         4096 Oct 16 08:23 systemd-private-57b261c500974c05b747807ccf510ef9-systemd-logind.service-4R0Edg
+
+root@logpoint:/tmp# chown loginspect:loginspect pa.tgz
+root@logpoint:/tmp# ls -l
+total 864
+drwxr-xr-x 2 loginspect loginspect   4096 Oct 16 08:26 analyzer
+drwx------ 3 root       root         4096 Oct 16 08:23 systemd-private-57b261c500974c05b747807ccf510ef9-systemd-logind.service-4R0Edg
+
+root@logpoint:/tmp# cat > install
+
+root@logpoint:/tmp# ls -l
+total 868
+drwxr-xr-x 2 loginspect loginspect   4096 Oct 16 08:26 analyzer
+drwx------ 3 root       root         4096 Oct 16 08:23 systemd-private-57b261c500974c05b747807ccf510ef9-systemd-logind.service-4R0Edg
+
+root@logpoint:/tmp# chown loginspect:loginspect install
+root@logpoint:/tmp# ls
+file_keeper__logpoint   install                        smtp_credentials
+
+root@logpoint:/tmp# chmod +x install
+
+root@logpoint:/tmp# ls -l
+total 868
+drwxr-xr-x 2 loginspect loginspect   4096 Oct 16 08:26 analyzer
+drwx------ 3 root       root         4096 Oct 16 08:23 systemd-private-57b261c500974c05b747807ccf510ef9-systemd-logind.service-4R0Edg
+
+root@logpoint:/tmp# ./install pa.tgz /opt/immune/installed/webserver/ backup
+Backing up deploy/nginx.conf...
+Backing up static/js/lib/UserInterface.js...
+applications/PA/
+applications/PA/controller.py
+applications/PA/config.json
+applications/PA/permission.json
+applications/PA/__init__.py
+applications/PA/validation.json
+static/js/pa/
+static/js/pa/index.js
+deploy/nginx.conf
+static/js/lib/UserInterface.js
+
+root@logpoint:/tmp# cd /opt/immune/installed/webserver/applications/PA
+root@logpoint:/opt/immune/installed/webserver/applications/PA# ls -l
+total 24
+-rwxr-xr-x 1 501 staff     3 Oct  5 03:35 config.json
+-rw-r--r-- 1 501 staff 10248 Oct 16 06:14 controller.py
+-rw-r--r-- 1 501 staff     0 Oct  5 03:35 __init__.py
+-rwxr-xr-x 1 501 staff     4 Oct  5 03:35 permission.json
+-rwxr-xr-x 1 501 staff     4 Oct  5 03:35 validation.json
+
+root@logpoint:/opt/immune/installed/webserver/applications/PA# cd ..
+root@logpoint:/opt/immune/installed/webserver/applications# cd ../static/
+root@logpoint:/opt/immune/installed/webserver/static# cd js
+root@logpoint:/opt/immune/installed/webserver/static/js# cd pa
+root@logpoint:/opt/immune/installed/webserver/static/js/pa# ls
+index.js
+root@logpoint:/opt/immune/installed/webserver/static/js/pa# cd ../../
+root@logpoint:/opt/immune/installed/webserver/static# cd js/
+root@logpoint:/opt/immune/installed/webserver/static/js# ls
+App.all.js   App.initLogin.js  App.widget.LogSearch.js  helper  pa          plugins           ui    vendor
+App.init.js  App.js            App.widget.TopMenu.js    lib     pluggables  ThemeSwitcher.js  util  viz
+root@logpoint:/opt/immune/installed/webserver/static/js# cp App.all.js App.all2.js
+root@logpoint:/opt/immune/installed/webserver/static/js# ls
+App.all2.js  App.init.js       App.js                   App.widget.TopMenu.js  lib  pluggables  ThemeSwitcher.js  util    viz
+App.all.js   App.initLogin.js  App.widget.LogSearch.js  helper                 pa   plugins     ui                vendor
+root@logpoint:/opt/immune/installed/webserver/static/js# rm App.all.js
+root@logpoint:/opt/immune/installed/webserver/static/js# ls
+App.all2.js  App.initLogin.js  App.widget.LogSearch.js  helper  pa          plugins           ui    vendor
+App.init.js  App.js            App.widget.TopMenu.js    lib     pluggables  ThemeSwitcher.js  util  viz
+root@logpoint:/opt/immune/installed/webserver/static/js# cd ../../
+root@logpoint:/opt/immune/installed/webserver# cd deploy
+root@logpoint:/opt/immune/installed/webserver/deploy# vim nginx.conf
+root@logpoint:/opt/immune/installed/webserver/deploy# sudo sv restart /etc/service/nginx
+ok: run: /etc/service/nginx: (pid 26746) 0s
+root@logpoint:/opt/immune/installed/webserver/deploy# ls
+gunicorn.conf.py  gunicorn.conf.pyc  mime.types  nginx.conf  nginx_service  nginx.template  run_gunicorn.sh
+root@logpoint:/opt/immune/installed/webserver/deploy# ls
+gunicorn.conf.py  gunicorn.conf.pyc  mime.types  nginx.conf  nginx_service  nginx.template  run_gunicorn.sh
+root@logpoint:/opt/immune/installed/webserver/deploy# cd ../static/js
+root@logpoint:/opt/immune/installed/webserver/static/js# ls
+App.all2.js  App.initLogin.js  App.widget.LogSearch.js  helper  pa          plugins           ui    vendor
+App.init.js  App.js            App.widget.TopMenu.js    lib     pluggables  ThemeSwitcher.js  util  viz
+root@logpoint:/opt/immune/installed/webserver/static/js# source /opt/immune/etc/env.rc
+(python) root@logpoint:/opt/immune/installed/webserver/static/js# /opt/immune/installed/webserver/bin/ui_js_minify
+bash: /opt/immune/installed/webserver/bin/ui_js_minify: Is a directory
+(python) root@logpoint:/opt/immune/installed/webserver/static/js# cd /opt/immune/installed/webserver/bin/ui_js_minify
+(python) root@logpoint:/opt/immune/installed/webserver/bin/ui_js_minify# ls
+compiler.jar  minify_javascript.py  minify_javascript.pyc  __pycache__  retrieve_js_compiler.py  retrieve_js_compiler.pyc
+
+(python) root@logpoint:/opt/immune/installed/webserver/bin/ui_js_minify# python minify_javascript.py
+Traceback (most recent call last):
+  File "minify_javascript.py", line 7, in <module>
+    from retrieve_js_compiler import download_package
+  File "/opt/makalu/installed/webserver/bin/ui_js_minify/retrieve_js_compiler.py", line 5, in <module>
+    from artifactory import ArtifactoryPath
+ModuleNotFoundError: No module named 'artifactory'
+(python) root@logpoint:/opt/immune/installed/webserver/bin/ui_js_minify# cat minify_javascript.py
+pwd
+
+Last login: Mon Oct 16 10:09:24 on ttys002
+Identity added: /Users/anishchapagain/.ssh/id_ach (ach@logpoint.com)
+
+anishchapagain@NP-ACH-MBP-01 teamblue-vmware % pwd
+/Users/anishchapagain/Terraform/teamblue-vmware
+
+anishchapagain@NP-ACH-MBP-01 teamblue-vmware % aws ssm start-session --target i-03ded29383644c019
+[profile cirrus-sandbox]
+
+You must specify a region. You can also configure your region by running "aws configure".
+anishchapagain@NP-ACH-MBP-01 teamblue-vmware % aws configure sso
+SSO session name (Recommended): pa_sandbox
+SSO start URL [None]: https://d-9367059b90.awsapps.com/start
+SSO region [None]: eu-west-1
+SSO registration scopes [sso:account:access]:
+Attempting to automatically open the SSO authorization page in your default browser.
+If the browser does not open or you wish to use a different device to authorize this request, open the following URL:
+
+https://device.sso.eu-west-1.amazonaws.com/
+
+Then enter the code:
+
+DVNL-PMRC
+The only AWS account available to you is: 599136235758
+Using the account ID 599136235758
+The only role available to you is: CirrusSandboxSSMAccess
+Using the role name "CirrusSandboxSSMAccess"
+CLI default client Region [None]: eu-west-1
+CLI default output format [None]:
+CLI profile name [CirrusSandboxSSMAccess-599136235758]:
+
+To use this profile, specify the profile name using --profile, as shown:
+
+aws s3 ls --profile CirrusSandboxSSMAccess-599136235758
+anishchapagain@NP-ACH-MBP-01 teamblue-vmware % ls -l
+total 7264
+-rw-r--r--   1 anishchapagain  staff     6021 Jul  4 11:59 README.md
+-rwxr-xr-x   1 anishchapagain  staff      677 Jun 27 09:51 login.sh
+-rw-r--r--   1 anishchapagain  staff     3046 Jul  4 11:59 main.tf
+-rw-r--r--   1 anishchapagain  staff      122 Jul  4 11:59 outputs.tf
+drwxr-xr-x  11 anishchapagain  staff      352 Jul 28 10:41 sessionmanager-bundle
+-rw-r--r--   1 anishchapagain  staff  3665057 Oct  6 17:19 sessionmanager-bundle.zip
+-rw-r--r--@  1 anishchapagain  staff     2211 Jul 21 12:04 terraform copy_org.txt
+-rw-r--r--   1 anishchapagain  staff    13197 Oct  5 09:23 terraform.tfstate
+-rw-r--r--   1 anishchapagain  staff      182 Oct  5 09:23 terraform.tfstate.backup
+-rw-r--r--@  1 anishchapagain  staff     2214 Aug 24 13:54 terraform.tfvars
+-rw-r--r--   1 anishchapagain  staff      518 Jul  4 11:59 variables.tf
+
+anishchapagain@NP-ACH-MBP-01 teamblue-vmware % vim ~/.aws/config
+
+anishchapagain@NP-ACH-MBP-01 teamblue-vmware % export AWS_PROFILE=cirrus-sandbox
+
+anishchapagain@NP-ACH-MBP-01 teamblue-vmware %
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get tenant ID in case of SaaS (Question to Dmytro Kostenko: where do we get tenant id and customer name?)
+Abhinay to remove hash in Company Name
+Fix extjs (app.all.js) packaging during install/uninstall
+Include nginx restart command during install
+Include Webserver restart command during install/uninstall
+
