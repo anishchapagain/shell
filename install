@@ -1,0 +1,36 @@
+#!/bin/bash
+#sh install ../cdp.tgz /Users/anishchapagain/Documents/Logpoint/ptf/disk/installed/webserver/ backup
+PACKAGE=$1
+TARGET=$2
+BACKUP=$3
+
+if [ -z "$PACKAGE" ] || [ -z "$TARGET" ] || [ -z "$BACKUP" ]
+then
+  echo "Usage <package> <target> <backup>"
+  exit 1
+fi
+
+# Backup
+tar tzf "$PACKAGE" | while read file
+do
+  if [ -f "$TARGET/$file" ]
+  then
+    echo Backing up $file...
+    mkdir -p `dirname "$BACKUP/$file"`
+    mv "$TARGET/$file" "$BACKUP/$file"
+  fi
+  mkdir -p `dirname "$TARGET/$file"`
+done
+
+# Unpackcd 
+tar xzvf "$PACKAGE" -C "$TARGET"
+
+#restart nginx service
+sudo sv restart /etc/service/nginx
+sleep 2
+#Backup App.all.js and rename it while unistalling
+mv /opt/immune/installed/webserver/static/js/App.all.js /opt/immune/installed/webserver/static/js/App.allBKP.js
+sleep 2
+#restart Webserver
+sudo sv restart /opt/immune/etc/service/webserver
+sleep 2

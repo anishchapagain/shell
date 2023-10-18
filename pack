@@ -1,0 +1,13 @@
+#!/bin/bash
+# sh pack list.txt /Users/anishchapagain/Documents/Logpoint/ptf/disk/installed/webserver/ cdp.tgz
+
+LIST=$1
+SOURCE=$2
+PACKAGE=$3
+
+if [ -z "$LIST" ] || [ -z "$SOURCE" ] || [ -z "$PACKAGE" ] ; then
+  echo "Usage: pack <list> <source> <package>"
+  exit 1
+fi
+
+tar czvf "$PACKAGE" -C "$SOURCE" -T "$LIST"

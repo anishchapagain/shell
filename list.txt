@@ -1,0 +1,5 @@
+applications/PA
+static/js/pa
+deploy/nginx.conf
+static/js/lib/UserInterface.js
+static/applications/Logs/app/view/search/Logs.js

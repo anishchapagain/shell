@@ -1,0 +1,34 @@
+#!/bin/bash
+# sh uninstall ../cdp.tgz /Users/anishchapagain/Documents/Logpoint/ptf/disk/installed/webserver/ backup
+PACKAGE=$1
+TARGET=$2
+BACKUP=$3
+
+if [ -z "$PACKAGE" ] || [ -z "$TARGET" ] || [ -z "$BACKUP" ]
+then
+  echo "Usage: uninstall <package> <target> <backup>"
+  exit 1
+fi
+
+tar tzf "$PACKAGE" | while read file
+do
+  echo "$file"
+  rm -rf "$TARGET/$file"
+
+  if [ -f "$BACKUP/$file" ]
+  then
+    echo "Restoring $file..."
+    mkdir -p `dirname "$TARGET/$file"`
+    mv "$BACKUP/$file" "$TARGET/$file"
+  fi
+done
+
+#Backup App.all.js and rename it while unistalling
+mv /opt/immune/installed/webserver/static/js/App.allBKP.js /opt/immune/installed/webserver/static/js/App.all.js
+sleep 2
+#restart nginx service
+sudo sv restart /etc/service/nginx
+sleep 2
+#restart Webserver
+sudo sv restart /opt/immune/etc/service/webserver
+sleep 2
